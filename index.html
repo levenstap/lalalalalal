@@ -1,20 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Valentine</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Will You Be My Valentine?</title>
+
+<style>
+  body {
+    background: pink;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  .container {
+    margin-top: 100px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  button {
+    padding: 15px 25px;
+    font-size: 18px;
+    margin: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #yesBtn {
+    background-color: #ff4d6d;
+    color: white;
+  }
+
+  #noBtn {
+    background-color: #444;
+    color: white;
+    position: relative;
+  }
+
+  img {
+    margin-top: 20px;
+    width: 300px;
+  }
+</style>
 </head>
+
 <body>
 
-<div class="container">
-  <h1>will you be my valentine?</h1>
+<div class="container" id="mainContent">
+  <h1>will you be my valentine? 💖</h1>
   <div class="buttons">
     <button id="yesBtn">yes</button>
     <button id="noBtn">no</button>
   </div>
-  <p id="message"></p>
 </div>
 
-<script src="script.js"></script>
+<script>
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
+  const mainContent = document.getElementById("mainContent");
+
+  // 🔥 EDIT THESE HOWEVER YOU WANT
+  const noPhrases = [
+    "no",
+    "are you sure?",
+    "really sure?",
+    "think again 😢",
+    "last chance...",
+    "pretty please?",
+    "don't do this 💔",
+    "wrong answer",
+    "try again 😌"
+  ];
+
+  let phraseIndex = 0;
+
+  // YES CLICK
+  yesBtn.addEventListener("click", () => {
+    mainContent.innerHTML = `
+      <h1>YIPPEEEEEEE ❤️</h1>
+      <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="celebration gif">
+    `;
+  });
+
+  // NO MOVE + CHANGE TEXT
+  noBtn.addEventListener("mouseover", () => {
+
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    phraseIndex = (phraseIndex + 1) % noPhrases.length;
+    noBtn.textContent = noPhrases[phraseIndex];
+  });
+</script>
+
 </body>
 </html>
